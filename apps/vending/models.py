@@ -12,7 +12,6 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=4, decimal_places=2, validators=[MinValueValidator(Decimal("0.00"))])
     created_at = models.DateTimeField(auto_now_add=True)
-    stock = models.IntegerField(validators=[MinValueValidator(0)])
     updated_at = models.DateTimeField(null=True)
 
 class VendingMachineSlot(models.Model):
@@ -24,3 +23,8 @@ class VendingMachineSlot(models.Model):
     quantity = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(0)])
     row = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)])
     column = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)])
+
+class Stock(models.Model):
+    product = models.ForeignKey("Product", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    quantity = models.IntegerField(null=False, default=0, validators=[MinValueValidator(0)])
