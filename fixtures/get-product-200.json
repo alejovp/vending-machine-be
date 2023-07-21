@@ -1,0 +1,10 @@
+{
+    "id": "my-product-id-1",
+    "name": "Coke",
+    "price": 1.50,
+    "stock": 10,
+    "description": "My product description",
+    "created-at": "23-09-2023",
+    "created-by": "User name or full name",
+    "sales": 200
+}
