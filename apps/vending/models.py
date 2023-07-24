@@ -23,13 +23,13 @@ class VendingMachineSlot(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
-    # quantity = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(0)])
+    quantity = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(0)], default=0)
     row = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)])
     column = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)])
 
-class Stock(models.Model):
-
-    product = models.OneToOneField("Product", unique=True, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    quantity = models.IntegerField(null=False, default=0, validators=[MinValueValidator(0)])
-    updated_at = models.DateTimeField(auto_now=True)
+# For simplicity we are going to keep the product stock/quantity on the VendingMachineSlot model 
+# class Stock(models.Model):
+#     product = models.OneToOneField("Product", unique=True, on_delete=models.CASCADE)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     quantity = models.IntegerField(null=False, default=0, validators=[MinValueValidator(0)])
+#     updated_at = models.DateTimeField(auto_now=True)
