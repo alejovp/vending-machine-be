@@ -42,31 +42,31 @@ class TestListVendingMachineSlots:
             {
                 "id": ANY,
                 "quantity": 1,
-                "coordinates": [2, 1],
+                "coordinates": [1, 2],
                 "product": {"id": ANY, "name": "Product 9", "price": "10.40"},
             },
             {
                 "id": ANY,
                 "quantity": 2,
-                "coordinates": [3, 1],
+                "coordinates": [1, 3],
                 "product": {"id": ANY, "name": "Product 8", "price": "10.40"},
             },
             {
                 "id": ANY,
                 "quantity": 3,
-                "coordinates": [4, 1],
+                "coordinates": [1, 4],
                 "product": {"id": ANY, "name": "Product 7", "price": "10.40"},
             },
             {
                 "id": ANY,
                 "quantity": 4,
-                "coordinates": [5, 1],
+                "coordinates": [1, 5],
                 "product": {"id": ANY, "name": "Product 6", "price": "10.40"},
             },
             {
                 "id": ANY,
                 "quantity": 0,
-                "coordinates": [1, 2],
+                "coordinates": [2, 1],
                 "product": {"id": ANY, "name": "Product 5", "price": "10.40"},
             },
             {
@@ -78,19 +78,19 @@ class TestListVendingMachineSlots:
             {
                 "id": ANY,
                 "quantity": 2,
-                "coordinates": [3, 2],
+                "coordinates": [2, 3],
                 "product": {"id": ANY, "name": "Product 3", "price": "10.40"},
             },
             {
                 "id": ANY,
                 "quantity": 3,
-                "coordinates": [4, 2],
+                "coordinates": [2, 4],
                 "product": {"id": ANY, "name": "Product 2", "price": "10.40"},
             },
             {
                 "id": ANY,
                 "quantity": 4,
-                "coordinates": [5, 2],
+                "coordinates": [2, 5],
                 "product": {"id": ANY, "name": "Product 1", "price": "10.40"},
             },
         ]
@@ -116,13 +116,13 @@ class TestListVendingMachineSlots:
             {
                 "id": ANY,
                 "quantity": 1,
-                "coordinates": [2, 1],
+                "coordinates": [1, 2],
                 "product": {"id": ANY, "name": "Product 9", "price": "10.40"},
             },
             {
                 "id": ANY,
                 "quantity": 0,
-                "coordinates": [1, 2],
+                "coordinates": [2, 1],
                 "product": {"id": ANY, "name": "Product 5", "price": "10.40"},
             },
             {
