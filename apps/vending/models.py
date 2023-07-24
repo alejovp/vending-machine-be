@@ -9,7 +9,7 @@ class Product(models.Model):
         db_table = "product"
 
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     price = models.DecimalField(max_digits=4, decimal_places=2, validators=[MinValueValidator(Decimal("0.00"))])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -24,8 +24,8 @@ class VendingMachineSlot(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
     quantity = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(0)], default=0)
-    row = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)])
-    column = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)])
+    row = models.IntegerField(validators=[MaxValueValidator(9), MinValueValidator(1)])
+    column = models.IntegerField(validators=[MaxValueValidator(3), MinValueValidator(1)])
 
 # For simplicity we are going to keep the product stock/quantity on the VendingMachineSlot model 
 # class Stock(models.Model):
