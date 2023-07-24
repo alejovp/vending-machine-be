@@ -16,4 +16,4 @@ class VendingMachineSlotSerializer(serializers.Serializer):
     product = ProductSerializer()
 
     def get_coordinates(self, instance) -> list[int, int]:
-        return [instance.column, instance.row]
+        return [instance.row, instance.column]

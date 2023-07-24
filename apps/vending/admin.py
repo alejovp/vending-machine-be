@@ -12,7 +12,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 class VendingMachineSlotAdmin(admin.ModelAdmin):
     list_display = ["product", "quantity", "row", "column"]
-    ordering = ["-row"]
+    ordering = ["row"]
 
 
 admin.site.register(Product, ProductAdmin)

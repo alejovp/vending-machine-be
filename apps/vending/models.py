@@ -18,14 +18,16 @@ class Product(models.Model):
          return self.name
 
 class VendingMachineSlot(models.Model):
-    class Meta:
-        db_table = "vending_machine_slot"
 
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
     quantity = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(0)], default=0)
     row = models.IntegerField(validators=[MaxValueValidator(9), MinValueValidator(1)])
     column = models.IntegerField(validators=[MaxValueValidator(3), MinValueValidator(1)])
+
+    class Meta:
+        db_table = "vending_machine_slot"
+        unique_together = ('row', 'column')
 
 # For simplicity we are going to keep the product stock/quantity on the VendingMachineSlot model 
 # class Stock(models.Model):
