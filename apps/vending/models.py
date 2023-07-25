@@ -69,6 +69,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
 
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     username = models.CharField(max_length=120, unique=True)
     balance = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(Decimal("0.00"))], default=Decimal("0.00"))
 

@@ -19,5 +19,6 @@ class VendingMachineSlotSerializer(serializers.Serializer):
         return [instance.row, instance.column]
 
 class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
+    id = serializers.UUIDField()
+    user_name = serializers.CharField(source='username')
     balance = serializers.DecimalField(max_digits=6, decimal_places=2)
