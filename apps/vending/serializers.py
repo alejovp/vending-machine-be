@@ -17,3 +17,7 @@ class VendingMachineSlotSerializer(serializers.Serializer):
 
     def get_coordinates(self, instance) -> list[int, int]:
         return [instance.row, instance.column]
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    balance = serializers.DecimalField(max_digits=6, decimal_places=2)

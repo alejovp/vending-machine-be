@@ -3,6 +3,7 @@ from apps.vending.models import VendingMachineSlot
 MAX_ROW = 3
 MAX_COLUMN = 3
 DEFAULT_SLOTS_GRID = [[{} for i in range(MAX_COLUMN)] for i in range(MAX_ROW)]
+DEFAULT_PASSWORD = 'Test_1234'
 
 def format_slots_into_products_grid():
     fields = ['quantity', 'row', 'column', 'product__id', 'product__name', 'product__price']
