@@ -30,7 +30,7 @@ urlpatterns = [
     path("products/", include([
         path("", vending_views.VendingMachineProductsView.as_view()),
     ])),
-    path("login", vending_views.LoginView.as_view()),
-    path("logout", vending_views.LogoutView.as_view()),
+    path("login/", vending_views.LoginView.as_view()),
+    path("logout/", vending_views.LogoutView.as_view()),
     path("profile/<uuid:id>", vending_views.ProfileView.as_view()),
 ]

@@ -40,7 +40,8 @@ class VendingMachineProductsView(APIView):
 class LoginView(APIView):
 
     # This view should be accessible also for unauthenticated users.
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = ()
+    authentication_classes = ()
 
     def post(self, request, format=None):
         username = self.request.data['user_name']
@@ -48,11 +49,20 @@ class LoginView(APIView):
             user = User.objects.get(username=username)
         except User.DoesNotExist:
             user = User.objects.create_user(username, DEFAULT_PASSWORD)
-        login(request, user)
-        serialized_user = LoginSerializer(user)
-        return Response(serialized_user.data, status=status.HTTP_202_ACCEPTED)
+
+        user = authenticate(request, username=username, password=DEFAULT_PASSWORD)
+        if user is not None:
+            login(request, user)
+            serialized_user = LoginSerializer(user)
+            return Response(serialized_user.data, status=status.HTTP_200_OK)
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class LogoutView(APIView):
+
+    # This view should be accessible also for unauthenticated users.
+    permission_classes = ()
+    authentication_classes = ()
 
     def get(self, request, format=None):
         logout(request)
