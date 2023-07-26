@@ -21,7 +21,7 @@ from apps.health.views import healthcheck
 import apps.vending.views as vending_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("healthcheck/", healthcheck),
     path("slots/", include([
         # path("<uuid:id>", vending_views.MyDetailViewToBeDone.as_view()),
@@ -30,6 +30,7 @@ urlpatterns = [
     path("products/", include([
         path("", vending_views.VendingMachineProductsView.as_view()),
     ])),
-    path('login', vending_views.LoginView.as_view()),
-    path('logout', vending_views.LogoutView.as_view()),
+    path("login", vending_views.LoginView.as_view()),
+    path("logout", vending_views.LogoutView.as_view()),
+    path("profile/<uuid:id>", vending_views.ProfileView.as_view()),
 ]

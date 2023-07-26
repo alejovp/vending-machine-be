@@ -1,14 +1,17 @@
+from uuid import UUID
+
 from django.contrib.auth import login, logout, authenticate
 
 from rest_framework.response import Response
 from rest_framework.request import Request
-from rest_framework.views import APIView
+from rest_framework.views import APIView, exceptions
 from rest_framework import permissions, status
 
 from apps.vending.models import VendingMachineSlot, User
 from apps.vending.serializers import VendingMachineSlotSerializer, LoginSerializer
-from apps.vending.validators import ListSlotsValidator
+from apps.vending.validators import ListSlotsValidator, ProfilePartialUpdateRequestValidator
 from apps.vending.services import format_slots_into_products_grid, DEFAULT_PASSWORD
+from apps.vending.use_cases import UpdateProfileUseCase
 
 
 class VendingMachineSlotView(APIView):
@@ -54,3 +57,11 @@ class LogoutView(APIView):
     def get(self, request, format=None):
         logout(request)
         return Response(status=status.HTTP_200_OK)
+
+class ProfileView(APIView):
+
+    def patch(self, request, id: UUID):
+        validator = ProfilePartialUpdateRequestValidator(data=request.data)
+        validator.is_valid(raise_exception=True)
+        user = UpdateProfileUseCase().execute(id, validator.build_dto())
+        return Response(data=LoginSerializer(user).data, status=status.HTTP_200_OK)
